@@ -19,12 +19,19 @@ COLORS = {
 
 
 class Square(object):
+    """
+    Square is a container class for each tile on the board.
+    It holds the piece and its corresponding icon
+    """
     def __init__(self, piece):
         self.piece = piece
         self.icon = piece.icon
 
 
 class State(object):
+    """"
+    State manages all aspects of the game.
+    """"
     def __init__(self):
         self.piece_positions = OrderedDict()
         for i in ROWS:
@@ -85,6 +92,9 @@ class State(object):
 
 
 class Piece(object):
+    """
+    Base class for each chess pieces.
+    """
     def __init__(self, color, pos):
         self.color = color
         self.pos = pos
@@ -101,6 +111,9 @@ class Piece(object):
         if self.state[move].piece.color == self.color:
             return False
         return True
+        
+    def clear_moves(self):
+        self.moves = OrderedDict()
 
 
 class Pawn(Piece):
@@ -166,10 +179,8 @@ class Knight(Piece):
                 if self.can_move(move):
                     self.moves[move] = move
 
+        print(self.moves)
         return self.moves
-
-    def clear_moves(self):
-        self.moves = OrderedDict()
 
 
 class Bishop(Piece):
@@ -225,6 +236,7 @@ class Board(object):
 
     def render_board(self, choice=None):
         if choice != None:
+            print(self._grid[choice])
             moves = self._grid[choice].piece.get_moves()
             print()
             m_str = COLORS["GREEN"]
