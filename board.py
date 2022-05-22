@@ -229,6 +229,8 @@ class Bishop(Piece):
         while temp_pos[0] >= 'A' and temp_pos[1] <= '8':
             if self.can_move(temp_pos):
                 self.moves[temp_pos] = temp_pos
+                if self.state[temp_pos].piece.icon != '.':
+                    break
                 temp_pos = chr(ord(temp_pos[0]) - 1) + chr(ord(temp_pos[1]) + 1)
             else:
                 break
@@ -239,6 +241,8 @@ class Bishop(Piece):
         while temp_pos[0] <= 'H' and temp_pos[1] <= '8':
             if self.can_move(temp_pos):
                 self.moves[temp_pos] = temp_pos
+                if self.state[temp_pos].piece.icon != '.':
+                    break
                 temp_pos = chr(ord(temp_pos[0]) + 1) + chr(ord(temp_pos[1]) + 1)
             else:
                 break
@@ -249,6 +253,8 @@ class Bishop(Piece):
         while temp_pos[0] <= 'H' and temp_pos[1] >= '1':
             if self.can_move(temp_pos):
                 self.moves[temp_pos] = temp_pos
+                if self.state[temp_pos].piece.icon != '.':
+                    break
                 temp_pos = chr(ord(temp_pos[0]) + 1) + chr(ord(temp_pos[1]) - 1)
             else:
                 break
@@ -259,6 +265,8 @@ class Bishop(Piece):
         while temp_pos[0] >= 'A' and temp_pos[1] >= '1':
             if self.can_move(temp_pos):
                 self.moves[temp_pos] = temp_pos
+                if self.state[temp_pos].piece.icon != '.':
+                    break
                 temp_pos = chr(ord(temp_pos[0]) - 1) + chr(ord(temp_pos[1]) - 1)
             else:
                 break
