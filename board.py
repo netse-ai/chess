@@ -17,20 +17,23 @@ COLORS = {
     "RESET": "\033[0m",
 }
 
+
 class Square(object):
     """
     Square is a container class for each tile on the board.
     It holds the piece and its corresponding icon
     """
+
     def __init__(self, piece):
         self.piece = piece
         self.icon = piece.icon
 
 
 class State(object):
-    """"
+    """ "
     State manages all aspects of the game
     """
+
     def __init__(self):
         self.piece_positions = OrderedDict()
         for i in ROWS:
@@ -47,7 +50,7 @@ class State(object):
             Castle(COLORS["BLACK"], "A8"),
             Castle(COLORS["BLACK"], "H8"),
         ]
-        
+
         knight_labels = [
             Knight(COLORS["WHITE"], "B1"),
             Knight(COLORS["WHITE"], "G1"),
@@ -95,6 +98,7 @@ class Piece(object):
     """
     Base class for each chess pieces.
     """
+
     def __init__(self, color, pos):
         self.color = color
         self.pos = pos
@@ -111,7 +115,7 @@ class Piece(object):
         if self.state[move].piece.color == self.color:
             return False
         return True
-        
+
     def clear_moves(self):
         self.moves = OrderedDict()
 
@@ -149,15 +153,25 @@ class Castle(Piece):
         self.icon = "C"
 
     def get_moves(self):
-        moves_forward = [move for move in self.state if move[0] == self.pos[0] and int(move[1]) > int(self.pos[1]) or int(move[1]) < int(self.pos[1])]
+        moves_forward = [
+            move
+            for move in self.state
+            if move[0] == self.pos[0]
+            and int(move[1]) > int(self.pos[1])
+            or int(move[1]) < int(self.pos[1])
+        ]
         idx = 0
         for move in moves_forward:
             square = self.state[move]
-            if square.piece.pos != self.pos and square.piece.icon != "." and square.piece.color == self.color:
+            if (
+                square.piece.pos != self.pos
+                and square.piece.icon != "."
+                and square.piece.color == self.color
+            ):
                 print("here:", square.piece.color, self.color)
                 break
             idx += 1
-            
+
         moves = []
         if idx > 0:
             moves = moves_forward[:idx]
