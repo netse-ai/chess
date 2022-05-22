@@ -44,11 +44,11 @@ class State(object):
     def init_board(self):
         black_pawn_labels = [ROWS[i] + "7" for i in range(8)]
         white_pawn_labels = [ROWS[i] + "2" for i in range(8)]
-        castle_labels = [
-            Castle(COLORS["WHITE"], "A1"),
-            Castle(COLORS["WHITE"], "H1"),
-            Castle(COLORS["BLACK"], "A8"),
-            Castle(COLORS["BLACK"], "H8"),
+        rook_labels = [
+            Rook(COLORS["WHITE"], "A1"),
+            Rook(COLORS["WHITE"], "H1"),
+            Rook(COLORS["BLACK"], "A8"),
+            Rook(COLORS["BLACK"], "H8"),
         ]
 
         knight_labels = [
@@ -77,7 +77,7 @@ class State(object):
         for i in white_pawn_labels:
             self.piece_positions[i].piece = Pawn(COLORS["WHITE"], i)
             self.piece_positions[i].icon = self.piece_positions[i].piece.icon
-        for i in castle_labels:
+        for i in rook_labels:
             self.piece_positions[i.pos].piece = i
             self.piece_positions[i.pos].icon = i.icon
         for i in knight_labels:
@@ -146,11 +146,11 @@ class Pawn(Piece):
         return self.moves
 
 
-class Castle(Piece):
+class Rook(Piece):
     def __init__(self, color, pos):
         Piece.__init__(self, color, pos)
         self.points = 1
-        self.icon = "C"
+        self.icon = "R"
 
     def get_moves(self):
         moves_forward = [
