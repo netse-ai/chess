@@ -226,7 +226,7 @@ class Bishop(Piece):
         temp_pos = chr(ord(self.pos[0]) - 1) + chr(ord(self.pos[1]) + 1)
 
         # Checks for moves in the top left direction
-        while temp_pos[0] >= "A" and temp_pos[1] <= "8":
+        while temp_pos[0] >= 'A' and temp_pos[1] <= '8':
             if self.can_move(temp_pos):
                 self.moves[temp_pos] = temp_pos
                 temp_pos = chr(ord(temp_pos[0]) - 1) + chr(ord(temp_pos[1]) + 1)
