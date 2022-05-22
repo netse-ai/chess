@@ -150,7 +150,7 @@ class Rook(Piece):
     def __init__(self, color, pos):
         Piece.__init__(self, color, pos)
         self.points = 1
-        self.icon = "C"
+        self.icon = "R"
 
     def get_moves(self):
         moves_forward = [
