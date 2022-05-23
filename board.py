@@ -220,7 +220,59 @@ class Bishop(Piece):
         Piece.__init__(self, color, pos)
         self.points = 3
         self.icon = "B"
+    
+    def get_moves(self):
+        # Creates a temporary position that traverses the board
+        temp_pos = chr(ord(self.pos[0]) - 1) + chr(ord(self.pos[1]) + 1)
 
+        # Checks for moves in the top left direction
+        while temp_pos[0] >= 'A' and temp_pos[1] <= '8':
+            if self.can_move(temp_pos):
+                self.moves[temp_pos] = temp_pos
+                if self.state[temp_pos].piece.icon != '.':
+                    break
+                temp_pos = chr(ord(temp_pos[0]) - 1) + chr(ord(temp_pos[1]) + 1)
+            else:
+                break
+            
+        temp_pos = chr(ord(self.pos[0]) + 1) + chr(ord(self.pos[1]) + 1)
+        
+        # Checks for moves in the top right direction
+        while temp_pos[0] <= 'H' and temp_pos[1] <= '8':
+            if self.can_move(temp_pos):
+                self.moves[temp_pos] = temp_pos
+                if self.state[temp_pos].piece.icon != '.':
+                    break
+                temp_pos = chr(ord(temp_pos[0]) + 1) + chr(ord(temp_pos[1]) + 1)
+            else:
+                break
+
+        temp_pos = chr(ord(self.pos[0]) + 1) + chr(ord(self.pos[1]) - 1)
+
+        # Checks for moves in the bottom right direction
+        while temp_pos[0] <= 'H' and temp_pos[1] >= '1':
+            if self.can_move(temp_pos):
+                self.moves[temp_pos] = temp_pos
+                if self.state[temp_pos].piece.icon != '.':
+                    break
+                temp_pos = chr(ord(temp_pos[0]) + 1) + chr(ord(temp_pos[1]) - 1)
+            else:
+                break
+
+        temp_pos = chr(ord(self.pos[0]) - 1) + chr(ord(self.pos[1]) - 1)
+
+        # Checks for moves in the bottom left direction    
+        while temp_pos[0] >= 'A' and temp_pos[1] >= '1':
+            if self.can_move(temp_pos):
+                self.moves[temp_pos] = temp_pos
+                if self.state[temp_pos].piece.icon != '.':
+                    break
+                temp_pos = chr(ord(temp_pos[0]) - 1) + chr(ord(temp_pos[1]) - 1)
+            else:
+                break
+            
+        return self.moves
+        
 
 class Queen(Piece):
     def __init__(self, color, pos):
