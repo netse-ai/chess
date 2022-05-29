@@ -347,7 +347,7 @@ board.render_board()
 print(COLORS["WHITE"])
 
 while True:
-    choice = input("Choose Peice: ")
+    choice = input("Choose Piece: ")
     board.render_board(choice)
     print(COLORS["WHITE"])
     move = input("Choose Move: ")
